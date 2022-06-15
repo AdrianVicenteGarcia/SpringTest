@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
+@Controller //anotado como controlador
 public class HomeController {
 
-    @RequestMapping("/")
+    @RequestMapping("/") //donde quieres el mapeo
     public @ResponseBody String greeting() {
-        return "Hello, World";
+        return "Me encanta programar";
     }
 
 }
