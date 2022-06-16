@@ -69,6 +69,11 @@ public class HttpRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1.5&b=2", String.class))
                 .isEqualTo("3.5");
     }
+    @Test
+    public void catAddZeros() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=0&b=2", String.class))
+                .isEqualTo("2.0");
+    }
 
     @Test
     public void catAddWithInvalidNumber() {
