@@ -59,7 +59,7 @@ public class HttpRequestTest {
 
     @Test
     public void canSubstract() {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=-2", String.class))
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=1", String.class))
                 .isEqualTo("-1.0");
     }
     @Test
