@@ -53,11 +53,17 @@ public class HttpRequestTest {
     @Test
     public void catAddWithInvalidNumber() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=X", String.class))
-                .isEqualTo("");
+                .contains(":400");
+
     }
 
     @Test
-    public void catAddNegativeNumbers() {
+    public void canSubstract() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=-2", String.class))
+                .isEqualTo("-1.0");
+    }
+    @Test
+    public void Multiply() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=-2", String.class))
                 .isEqualTo("-1.0");
     }
