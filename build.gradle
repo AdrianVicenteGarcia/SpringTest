@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'jacoco'
 	id 'pmd'
+	id 'info.solidsoft.pitest' version '1.7.4'
 }
 
 group = 'com.example'
@@ -17,6 +18,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	classpath 'info.lidsoft.gradle.pitest:gradle-pitest-plugin:1.7.4'
 }
 
 tasks.named('test') {
@@ -36,5 +38,13 @@ jacocoTestReport{
 		ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
 		ignoreFailures = true
 	}
+	pitest {
+		targetClasses = ['our.base.package.*']  //by default "${project.group}.*"
+		pitestVersion = '1.7.4' //not needed when a default PIT version should be used
+		threads = 4
+		outputFormats = ['XML', 'HTML']
+		timestampedReports = false
+	}
+
 
 }
