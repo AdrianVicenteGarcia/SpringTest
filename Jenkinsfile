@@ -29,6 +29,14 @@ pipeline {
                 }
             }
         }
+        stage('QA checks') {
+            steps {
+                recordIssues([
+                    enabledForFailure: true,
+                    tools: [php()]
+                ])
+            }
+        }
     }
 }
 
