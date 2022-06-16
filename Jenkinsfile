@@ -33,7 +33,7 @@ pipeline {
             steps {
                 recordIssues([
                     enabledForFailure: true,
-                    tools: [php()]
+                    tools: [pmd()]
                 ])
             }
         }
