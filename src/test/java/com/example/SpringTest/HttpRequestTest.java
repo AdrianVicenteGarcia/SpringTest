@@ -1,5 +1,6 @@
 package com.example.SpringTest;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,8 +35,8 @@ public class HttpRequestTest {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add?a=1&b=2", String.class))
                 .isEqualTo("3.0");
     }
-
-    @ParameterizedTest
+    @DisplayName("Multiples choices")
+    @ParameterizedTest(name ="{displayName} [{index}] {0} + {1} = {2}" )
     @CsvSource({
             "1.0,   2.0,    3.0",
             "1.0,   1.0,    2.0",
