@@ -165,7 +165,7 @@ public class HttpRequestTest {
     @Test
     public void canDivideBetweenZeros() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/divide?a=0&b=0", String.class))
-                .contains("NaN");
+                .contains("0.0");
     }
     @Test
     public void canDivideZeroWith() {
