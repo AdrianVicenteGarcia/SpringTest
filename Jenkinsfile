@@ -9,15 +9,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               sh "./gradlew test assemble"
+               sh "./gradlew test assemble check"
             }
 
           post {
                 success {
                     junit 'build/test-results/test/*.xml'
+
                     archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint:true, followSymlinks:false
                     jacoco()
-                    warningsPlugin()
+                    recordIssues enabledForFailure: true,tool: pmdParser(pattern: 'build/reports/pmd/*.xml)
                 }
             }
         }
