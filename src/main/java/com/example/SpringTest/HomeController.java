@@ -15,6 +15,10 @@ public class HomeController {
         @RequestParam(value = "a", defaultValue = "0") Float a,
         @RequestParam(value = "b", defaultValue = "0") Float b
     ){
+        if(a == 0){
+
+            return a;
+        }
         return a + b;
     }
     @GetMapping("/substract")
@@ -36,10 +40,7 @@ public class HomeController {
             @RequestParam(value = "a", defaultValue = "0") Float a,
             @RequestParam(value = "b", defaultValue = "0") Float b
     ){
-        if(a == 0){
 
-            return a;
-        }
         return a / b;
     }
 }
