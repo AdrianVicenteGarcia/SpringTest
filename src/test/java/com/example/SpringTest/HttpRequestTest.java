@@ -96,12 +96,12 @@ public class HttpRequestTest {
     @Test
     public void canMultiplyMissingValue() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/multiply?a=1", String.class))
-                .contains(":400");
+                .isEqualTo("0.0");
     }
     @Test
     public void canMultiplyEmptyValue() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/multiply?a=1&b=", String.class))
-                .contains(":400");
+                .isEqualTo("0.0");
     }
     @Test
     public void canMultiplyWithFractions() {
@@ -126,17 +126,17 @@ public class HttpRequestTest {
     @Test
     public void canDivideMissingValue() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/divide?a=1", String.class))
-                .contains(":400");
+                .contains("Infinity");
     }
     @Test
     public void canDivideEmptyValue() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/divide?a=1&b=", String.class))
-                .contains(":400");
+                .contains("Infinity");
     }
     @Test
     public void canDivideWithFractions() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/divide?a=2.5&b=2", String.class))
-                .isEqualTo("1.75");
+                .isEqualTo("1.25");
     }
     @Test
     public void canDivideWithZero() {
