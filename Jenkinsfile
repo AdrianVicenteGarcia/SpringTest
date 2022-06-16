@@ -15,6 +15,7 @@ pipeline {
                             pmdParser(pattern: 'build/reports/pmd/*.xml')
                         ]
                     )
+                    recordIssues(tools: [pit(pattern: 'build/reports/pitest/*.xml')])
                 }
             }
         }
