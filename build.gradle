@@ -1,7 +1,9 @@
+
 plugins {
 	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'com.adarshr.test-logger' version '3.2.0'
 	id 'jacoco'
 	id 'pmd'
 	id 'info.solidsoft.pitest' version '1.7.4'
@@ -18,7 +20,6 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.7.4'
 }
 
 tasks.named('test') {
@@ -26,11 +27,12 @@ tasks.named('test') {
 	finalizedBy jacocoTestReport
 }
 
-jacocoTestReport{
+jacocoTestReport {
 	dependsOn test
 	reports {
 		xml.required = true
 	}
+
 	pmd {
 		consoleOutput = true
 		toolVersion = "6.21.0"
@@ -40,12 +42,11 @@ jacocoTestReport{
 	}
 	pitest {
 		junit5PluginVersion = '0.15'
-		targetClasses = ['com.example.SpringTest.*']  //by default "${project.group}.*"
+		targetClasses = ['com.example.springtesting.*']  //by default "${project.group}.*"
 		pitestVersion = '1.7.4' //not needed when a default PIT version should be used
 		threads = 4
 		outputFormats = ['XML', 'HTML']
 		timestampedReports = false
 	}
-
 
 }
