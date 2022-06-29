@@ -17,8 +17,7 @@ sourceCompatibility = '11'
 repositories {
 	mavenCentral()
 }
-subprojects {
-	apply plugin: "maven-publish"
+
 	publishing {
 		publications {
 			mavenJava(MavenPublication) {
@@ -36,13 +35,9 @@ subprojects {
 				}
 			}
 		}
-		publications {
-			gpr(MavenPublication) {
-				from(components.java)
-			}
-		}
 	}
-}
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -66,12 +61,12 @@ pmd {
 	rulesMinimumPriority = 5
 	ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
 }
-//pitest {
-//	junit5PluginVersion = '0.15'
-//	targetClasses = ['com.example.springtesting.*']
-//	pitestVersion = '1.7.4'
-//	threads = 4
-//	outputFormats = ['XML', 'HTML']
-//	timestampedReports = false
+pitest {
+	junit5PluginVersion = '0.15'
+	targetClasses = ['com.example.springtesting.*']
+	pitestVersion = '1.7.4'
+	threads = 4
+	outputFormats = ['XML', 'HTML']
+	timestampedReports = false
 
-//}
+}
