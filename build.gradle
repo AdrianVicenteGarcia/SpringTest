@@ -50,9 +50,6 @@ jacocoTestReport {
 
 	}
 
-subprojects {
-
-	apply plugin: "maven-publish"
 
 
 	publishing {
@@ -61,8 +58,8 @@ subprojects {
 				name = "GitHubPackages"
 				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest")
 				credentials {
-					username = project.findProperty("gpr.user") ?: System.getenv("adrianvicentegarcia")
-					password = project.findProperty("gpr.key") ?: System.getenv("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")
+					username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+					password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
 				}
 			}
 		}
@@ -71,5 +68,5 @@ subprojects {
 				from(components.java)
 			}
 		}
-	}
+
 }

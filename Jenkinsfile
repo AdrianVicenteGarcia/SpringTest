@@ -22,7 +22,11 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Gradle Wrapper
-                sh "./gradlew assemble"
+                //sh "./gradlew assemble"
+                with Gradle{
+                         withCredentials([usernamePassword(credentialsId: 'adriangarcia3', passwordVariable: 'gitPassword', usernameVariable: 'gitUsername')]) {
+                         sh "./gradlew publish"
+                }
             }
             post {
                 // If Gradle was able to run the tests, even if some of the test
