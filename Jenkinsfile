@@ -1,50 +1,44 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Test') {
-            steps {
-                sh './gradlew clean test check pitest'
-            }
-            post {
-                always {
-                    junit 'build/test-results/test/*.xml'
-                    jacoco execPattern: 'build/jacoco/*.exec'
-                    recordIssues(
-                        tools: [
-                            pmdParser(pattern: 'build/reports/pmd/*.xml')
-                        ]
-                    )
-                    recordIssues(tools: [pit(pattern: 'build/reports/pitest/*.xml')])
-                }
-            }
+    options {
+            ansiColor('xterm')
+            timestamps()
+            disableConcurrentBuilds()
+            buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
         }
+    stages {
         stage('Build') {
             steps {
-                // Run Gradle Wrapper
-                sh "./gradlew assemble"
-                withGradle{
-                         withCredentials([usernamePassword(credentialsId: 'Credentials', passwordVariable: 'gitPassword', usernameVariable: 'gitUsername')]) {
-                         sh "./gradlew publish"
+                //git branch: 'main', url: 'https://github.com/rodauher/Hello-Springboot.git'
+                //sh "./gradlew test assemble"
+                withGradle {
+                sh "./gradlew test assemble check pitest"
+                jacoco execPattern: 'build/jacoco/*.exec'
+                recordIssues(tools: [pmdParser(pattern: 'build/reports/pmd/*.xml')])
+                recordIssues(tools: [pit(pattern: 'build/reports/pitest/*.xml')])
                 }
-            }
-            }
 
+            }
             post {
-                // If Gradle was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
                 success {
-                    archiveArtifacts 'build/libs/*.jar'
+                    junit 'build/test-results/test/*.xml'
+                    archiveArtifacts 'build/libs/*jar'
                 }
             }
         }
-        stage('Deploy') {
+        stage('Publish'){
             steps {
-                   echo 'Deploying...'
+            withGradle {
+                withCredentials([usernamePassword(credentialsId: 'Credentials', passwordVariable: 'TOKEN', usernameVariable: 'USERNAME')]){
+                sh "./gradlew publish"}
+                }
+                sshagent(['git-1']) {
+                sh 'git tag BUILD-1.0.${BUILD_NUMBER}'
+                sh 'git push --tags'
+                }
             }
         }
     }
 }
-
 
 
