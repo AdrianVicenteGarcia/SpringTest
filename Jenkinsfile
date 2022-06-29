@@ -32,7 +32,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'Credentials', passwordVariable: 'TOKEN', usernameVariable: 'USERNAME')]){
                 sh "./gradlew publish"}
                 }
-                sshagent(['git-1']) {
+                sshagent(['git-good']) {
                 sh 'git tag BUILD-1.0.${BUILD_NUMBER}'
                 sh 'git push --tags'
                 }
