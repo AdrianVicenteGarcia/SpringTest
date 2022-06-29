@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Gradle Wrapper
-                //sh "./gradlew assemble"
+                sh "./gradlew assemble"
                 with Gradle{
                          withCredentials([usernamePassword(credentialsId: 'adriangarcia3', passwordVariable: 'gitPassword', usernameVariable: 'gitUsername')]) {
                          sh "./gradlew publish"
