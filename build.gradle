@@ -49,20 +49,27 @@ jacocoTestReport {
 		outputFormats = ['XML', 'HTML']
 
 	}
-publishing {
-	repositories{
-		maven{
-			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest")
-			credentials {
-				username = project.findProperty("gpr.user") ?: System.getenv("adrianvicentegarcia")
-				password = project.findProperty("gpr.key") ?: System.getenv("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")
+
+subprojects {
+
+	apply plugin: "maven-publish"
+
+
+	publishing {
+		repositories {
+			maven {
+				name = "GitHubPackages"
+				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest")
+				credentials {
+					username = project.findProperty("gpr.user") ?: System.getenv("adrianvicentegarcia")
+					password = project.findProperty("gpr.key") ?: System.getenv("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")
+				}
 			}
 		}
-	}
-	publications {
-		gpr(MavenPublication){
-			from(components.java)
+		publications {
+			gpr(MavenPublication) {
+				from(components.java)
+			}
 		}
 	}
 }
