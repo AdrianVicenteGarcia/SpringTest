@@ -27,7 +27,7 @@ repositories {
 		}
 		repositories {
 			maven {
-				name = "spring-testing"
+				name = "SpringTest"
 				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest")
 				credentials {
 					username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
@@ -63,7 +63,7 @@ pmd {
 }
 pitest {
 	junit5PluginVersion = '0.15'
-	targetClasses = ['com.example.springtesting.*']
+	targetClasses = ['com.example.SpringTest.*']
 	pitestVersion = '1.7.4'
 	threads = 4
 	outputFormats = ['XML', 'HTML']
