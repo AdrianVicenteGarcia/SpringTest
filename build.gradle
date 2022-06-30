@@ -43,7 +43,7 @@ repositories {
 					password = project.findProperty("gpr.key") ?: System.getenv("TOKENEX")
 				}
 
-			//}
+			}
 
 		}
 	}
