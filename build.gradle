@@ -28,14 +28,14 @@ repositories {
 		repositories {
 			maven {
 				name = "SpringTest"
-				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest")
+				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest/")
 				credentials {
 					username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
 					password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
 				}
 			}
 			//maven {
-			//	name = "spring-testing"
+			//	name = "SpringTest"
 			//	url = uri("http://localhost:9084/repository/SpringTest/")
 			//	allowInsecureProtocol=true
 			//	credentials {
