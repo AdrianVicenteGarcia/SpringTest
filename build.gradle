@@ -34,6 +34,17 @@ repositories {
 					password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
 				}
 			}
+			maven {
+				name = "spring-testing"
+				url = uri("http://localhost:9084/repository/Spring-testing/")
+				allowInsecureProtocol=true
+				credentials {
+					username = project.findProperty("gpr.user") ?: System.getenv("USERNAMESN")
+					password = project.findProperty("gpr.key") ?: System.getenv("TOKENSN")
+				}
+
+			}
+
 		}
 	}
 
