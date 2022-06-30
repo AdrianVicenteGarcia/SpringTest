@@ -33,7 +33,7 @@ pipeline {
                 //withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'TOKENEX', usernameVariable: 'USERNAMENEX')]){//, usernamePassword(credentialsId: 'nexus', passwordVariable: 'TOKENEX', usernameVariable: 'USERNAMENEX')]) {
                 sh "./gradlew publish"}
                 }
-                sshagent(['prueba']) {
+                sshagent(['git-private']) {
                 sh 'git tag BUILD-1.0.${BUILD_NUMBER}'
                 sh 'git push --tags'
                 }
