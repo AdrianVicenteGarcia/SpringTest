@@ -26,22 +26,22 @@ repositories {
 			}
 		}
 		repositories {
-			maven {
-				name = "SpringTest"
-				url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest/")
-				credentials {
-					username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-					password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-				}
-			}
 			//maven {
 			//	name = "SpringTest"
-			//	url = uri("http://localhost:9084/repository/SpringTest/")
-			//	allowInsecureProtocol=true
+			//	url = uri("https://maven.pkg.github.com/AdrianVicenteGarcia/SpringTest/")
 			//	credentials {
-			//		username = project.findProperty("gpr.user") ?: System.getenv("USERNAMENEX")
-			//		password = project.findProperty("gpr.key") ?: System.getenv("TOKENEX")
+			//		username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+			//		password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
 			//	}
+			//}
+			maven {
+				name = "SpringTest"
+				url = uri("http://localhost:9084/repository/SpringTest/")
+				allowInsecureProtocol=true
+				credentials {
+					username = project.findProperty("gpr.user") ?: System.getenv("USERNAMENEX")
+					password = project.findProperty("gpr.key") ?: System.getenv("TOKENEX")
+				}
 
 			//}
 
