@@ -34,16 +34,16 @@ repositories {
 					password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
 				}
 			}
-			maven {
-				name = "spring-testing"
-				url = uri("http://localhost:9084/repository/SpringTest/")
-				allowInsecureProtocol=true
-				credentials {
-					username = project.findProperty("gpr.user") ?: System.getenv("USERNAMENEX")
-					password = project.findProperty("gpr.key") ?: System.getenv("TOKENEX")
-				}
+			//maven {
+			//	name = "spring-testing"
+			//	url = uri("http://localhost:9084/repository/SpringTest/")
+			//	allowInsecureProtocol=true
+			//	credentials {
+			//		username = project.findProperty("gpr.user") ?: System.getenv("USERNAMENEX")
+			//		password = project.findProperty("gpr.key") ?: System.getenv("TOKENEX")
+			//	}
 
-			}
+			//}
 
 		}
 	}
